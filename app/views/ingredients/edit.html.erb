@@ -1,0 +1,15 @@
+<h1> Edit Ingredient: <%= @ingredient.name %> </h1>
+
+<%= form_for @ingredient do |f| %>
+  <div>
+    <%= f.label :name %>
+    <%= f.text_field :name %>
+  </div>
+  <div>
+    <%= f.label :is_available %>
+    <%= f.check_box :is_available %>
+  </div>
+  <%= f.submit "Confirm Edits to Ingredient" %>
+<% end %>
+
+<%= link_to 'Cancel', ingredient_path(@ingredient) %>

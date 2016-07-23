@@ -1,0 +1,12 @@
+<h1><%= @recipe.title %></h1>
+<p><%= @recipe.description %></p>
+<p>
+  You have <%= @recipe.made_it_yet ? "already" : "not yet" %> tried out this recipe.
+</p>
+
+<%= button_to 'Edit Recipe', edit_recipe_path, {method: :get} %>
+<%= button_to 'Delete Recipe', recipe_path, {method: :delete}%>
+
+<footer>
+  <%= link_to '< Back to Recipes', recipes_path %>
+</footer>

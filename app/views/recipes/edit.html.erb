@@ -1,0 +1,19 @@
+<h1> Edit Recipe: <%= @recipe.title %> </h1>
+
+<%= form_for @recipe do |f| %>
+  <div>
+    <%= f.label :title %>
+    <%= f.text_field :title %>
+  </div>
+  <div>
+    <%= f.label :description %>
+    <%= f.text_area :description %>
+  </div>
+  <div>
+    <%= f.label :made_it_yet %>
+    <%= f.check_box :made_it_yet %>
+  </div>
+  <%= f.submit "Confirm Edits to Recipe" %> <!-- PATCH to `/recipes/:id` -->
+<% end %>
+
+<%= link_to 'Cancel', recipe_path(@recipe) %>

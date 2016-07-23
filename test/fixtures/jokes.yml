@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  setup: MyString
+  punchline: MyString
+  dad_score: 1
+
+two:
+  setup: MyString
+  punchline: MyString
+  dad_score: 1

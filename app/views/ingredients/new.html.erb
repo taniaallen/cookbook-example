@@ -1,0 +1,15 @@
+<h1> New Ingredient </h1>
+
+<%= form_for @ingredient do |f| %>
+  <div>
+    <%= f.label :name %>
+    <%= f.text_field :name %>
+  </div>
+  <div>
+    <%= f.label :is_available %>
+    <%= f.check_box :is_available %>
+  </div>
+  <%= f.submit "Create New Ingredient" %>
+<% end %>
+
+<% link_to 'Cancel', ingredients_path %>

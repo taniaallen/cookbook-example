@@ -1,0 +1,11 @@
+<h1><%= @ingredient.name %></h1>
+<p>
+  You <%= @ingredient.is_available ? '' : 'do not' %> have this on hand.
+</p>
+
+<%= button_to 'Edit Ingredient', edit_ingredient_path, {method: :get} %>
+<%= button_to 'Delete Ingredient', ingredient_path, {method: :delete}%>
+
+<footer>
+  <%= link_to '< Back to ingredients list', ingredients_path %>
+</footer>

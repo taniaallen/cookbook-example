@@ -14,3 +14,18 @@ footer {
   position: absolute;
   width: 80%;
 }
+
+.ingredients-list {
+  width: 50%;
+}
+
+.ingredients-list > input,
+.ingredients-list > label {
+  display: block;
+  float: left;
+}
+
+.ingredients-list > input,
+.new-ingredients {
+  clear: left;
+}

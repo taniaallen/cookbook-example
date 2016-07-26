@@ -16,11 +16,21 @@
   <div>
     <h4> Ingredients </h4>
     <div class='ingredients-list'>
-      <%= f.collection_check_boxes :ingredient_ids, Ingredient.all, :id, :name %>
+      <%= f.fields_for :recipe_components do |rc_fields| %>
+        <p>
+          <%= rc_fields.text_field :quantity, placeholder: 'Quantity' %>
+          <%= rc_fields.text_field :unit, placeholder: 'Unit' %>
+          of
+          <%= rc_fields.collection_select(:ingredient_id, Ingredient.all, :id, :name) %>
+          <%= rc_fields.text_field :prep_notes, placeholder: 'Notes' %>
+          <%= rc_fields.label :_destroy, 'Remove?' %>
+          <%= rc_fields.check_box :_destroy %>
+        </p>
+      <% end %>
     </div>
     <div class='new-ingredients'>
-      <p><%= label_tag 'new_ingredients', 'Add New Ingredients Below; Please Separate Names with Commas' %></p>
-      <p><%= text_field_tag 'new_ingredients' %></p>
+      <p><%= label_tag 'new_ingredients', 'Add New Ingredients Below. Required Format: "1 cup of flour; 2 cubes of sugar; ..."' %></p>
+      <p><%= text_area_tag 'new_ingredients' %></p>
     </div>
   </div>
   <%= f.submit "Confirm Edits to Recipe" %> <!-- PATCH to `/recipes/:id` -->

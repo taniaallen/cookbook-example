@@ -6,10 +6,10 @@
 
 <ul>
   <lh> Ingredients: </lh>
-  <% @recipe.ingredients.each do |ingredient| %>
-  <li class="<%= ingredient.is_available ? 'available' : 'not-available'%>">
-    <%= link_to ingredient do %>
-      <p> <%= ingredient.name %> </p>
+  <% @recipe.recipe_components.each do |component| %>
+  <li class="<%= component.ingredient.is_available ? 'available' : 'not-available'%>">
+    <%= link_to component.ingredient do %>
+      <p> <%= component.quantity %> <%= component.unit %> of <%= component.ingredient.name %> </p>
     <% end %>
   </li>
   <% end %>

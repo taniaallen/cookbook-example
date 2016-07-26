@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160724000200) do
+ActiveRecord::Schema.define(version: 20160726095547) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -22,11 +22,16 @@ ActiveRecord::Schema.define(version: 20160724000200) do
     t.datetime "updated_at",                   null: false
   end
 
-  create_table "ingredients_recipes", id: false, force: :cascade do |t|
-    t.integer "recipe_id",     null: false
-    t.integer "ingredient_id", null: false
-    t.index ["ingredient_id", "recipe_id"], name: "index_ingredients_recipes_on_ingredient_id_and_recipe_id", using: :btree
-    t.index ["recipe_id", "ingredient_id"], name: "index_ingredients_recipes_on_recipe_id_and_ingredient_id", using: :btree
+  create_table "recipe_components", force: :cascade do |t|
+    t.decimal  "quantity"
+    t.string   "unit"
+    t.string   "prep_notes"
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
+    t.integer  "recipe_id"
+    t.integer  "ingredient_id"
+    t.index ["ingredient_id"], name: "index_recipe_components_on_ingredient_id", using: :btree
+    t.index ["recipe_id"], name: "index_recipe_components_on_recipe_id", using: :btree
   end
 
   create_table "recipes", force: :cascade do |t|
@@ -37,4 +42,6 @@ ActiveRecord::Schema.define(version: 20160724000200) do
     t.datetime "updated_at",                  null: false
   end
 
+  add_foreign_key "recipe_components", "ingredients"
+  add_foreign_key "recipe_components", "recipes"
 end

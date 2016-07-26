@@ -45,9 +45,8 @@ class RecipesController < ApplicationController
 
   private
   def recipe_params
-    ## Using .collection_check_boxes
-    params.require(:recipe).permit(:title, :description, :made_it_yet, ingredient_ids: [])
     ## Using .fields_for
-    # params.require(:recipe).permit(:title, :description, :made_it_yet, ingredients_attributes: [:id, :name, :_destroy])
+    params.require(:recipe).permit(:title, :description, :made_it_yet,
+      :recipe_components_attributes => [:id, :quantity, :unit, :prep_notes, :_destroy, :ingredient_id])
   end
 end

@@ -11,6 +11,7 @@ class RecipesController < ApplicationController
   def create
     @recipe = Recipe.new(recipe_params)
     if @recipe.save
+     @recipe.make_new_ingredients(params)
       redirect_to recipes_url
     else
       redirect_to recipes_new_url
@@ -27,7 +28,9 @@ class RecipesController < ApplicationController
 
   def update
     @recipe = Recipe.find(params[:id])
+
     if @recipe.update(recipe_params)
+       @recipe.make_new_ingredients(params)
       redirect_to recipe_url(@recipe)
     else
       redirect_to recipes_edit_url
@@ -42,6 +45,6 @@ class RecipesController < ApplicationController
 
   private
   def recipe_params
-    params.require(:recipe).permit(:title, :description, :made_it_yet)
+    params.require(:recipe).permit(:title, :description, :made_it_yet, :ingredient_ids => [])
   end
 end

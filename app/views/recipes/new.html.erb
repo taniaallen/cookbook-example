@@ -13,6 +13,17 @@
     <%= f.label :made_it_yet %>
     <%= f.check_box :made_it_yet %>
   </div>
+  <div>
+    <h4> Ingredients </h4>
+    <div class='ingredients-list'>
+      <%= f.collection_check_boxes :ingredient_ids, Ingredient.all, :id, :name %>
+    </div>
+    <div class='new-ingredients'>
+      <p><%= label_tag 'new_ingredients', 'Add New Ingredients Below; Please Separate Names with Commas' %></p>
+      <p><%= text_field_tag 'new_ingredients' %></p>
+    </div>
+  </div>
+
   <%= f.submit "New Recipe" %> <!-- POST to `/recipes` -->
 <% end %>
 

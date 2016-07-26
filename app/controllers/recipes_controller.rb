@@ -6,11 +6,13 @@ class RecipesController < ApplicationController
 
   def new
     @recipe = Recipe.new
+    @new_ingredient = Ingredient.new
   end
 
   def create
     @recipe = Recipe.new(recipe_params)
     if @recipe.save
+      @recipe.add_ingredients_from_hash(params)
       redirect_to recipes_url
     else
       redirect_to recipes_new_url
@@ -28,6 +30,7 @@ class RecipesController < ApplicationController
   def update
     @recipe = Recipe.find(params[:id])
     if @recipe.update(recipe_params)
+      @recipe.add_ingredients_from_hash(params)
       redirect_to recipe_url(@recipe)
     else
       redirect_to recipes_edit_url
@@ -42,6 +45,9 @@ class RecipesController < ApplicationController
 
   private
   def recipe_params
-    params.require(:recipe).permit(:title, :description, :made_it_yet)
+    ## Using .collection_check_boxes
+    params.require(:recipe).permit(:title, :description, :made_it_yet, ingredient_ids: [])
+    ## Using .fields_for
+    # params.require(:recipe).permit(:title, :description, :made_it_yet, ingredients_attributes: [:id, :name, :_destroy])
   end
 end

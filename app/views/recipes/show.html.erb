@@ -4,6 +4,17 @@
   You have <%= @recipe.made_it_yet ? "already" : "not yet" %> tried out this recipe.
 </p>
 
+<ul>
+  <lh> Ingredients: </lh>
+  <% @recipe.ingredients.each do |ingredient| %>
+  <li class="<%= ingredient.is_available ? 'available' : 'not-available'%>">
+    <%= link_to ingredient do %>
+      <p> <%= ingredient.name %> </p>
+    <% end %>
+  </li>
+  <% end %>
+</ul>
+
 <%= button_to 'Edit Recipe', edit_recipe_path, {method: :get} %>
 <%= button_to 'Delete Recipe', recipe_path, {method: :delete}%>
 
